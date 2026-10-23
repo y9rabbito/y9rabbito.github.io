@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sudipta Kumar Biswas | Deep learning for medical imaging</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f6f7;--surface:#ffffff;--ink:#12202a;--muted:#55656f;--line:#d3dde1;--mask:#12968a;--mask-soft:#d6f0ec;--amber:#b86a00;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a21;--surface:#16252e;--ink:#e8f0f2;--muted:#9fb0b8;--line:#2a3d48;--mask:#3cc9ba;--mask-soft:#173b3b;--amber:#f0a747;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1a21;--surface:#16252e;--ink:#e8f0f2;--muted:#9fb0b8;--line:#2a3d48;--mask:#3cc9ba;--mask-soft:#173b3b;--amber:#f0a747;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:var(--mask)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+nav{display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:20px 0}
+nav .links{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:15px}
+nav a:hover{color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:36px 0 70px}
+.hero h1{font-size:clamp(40px,6.4vw,74px);font-weight:800;letter-spacing:-.03em}
+.hero p.lead{font-size:19px;color:var(--muted);max-width:34em;margin:22px 0 26px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:11px 20px;border-radius:8px;border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;font-weight:500;background:transparent;font:inherit;font-weight:500;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.scan{background:#0b1217;border-radius:14px;padding:14px;position:relative}
+.scan svg{display:block;width:100%;height:auto}
+.scan .mask{opacity:0;transition:opacity .6s}
+.scan.on .mask{opacity:1}
+.scan figcaption{display:flex;justify-content:space-between;align-items:center;gap:10px;color:#9fb0b8;font-size:14px;padding:10px 4px 0}
+.scan button{background:#12968a;color:#04120f;border:0;border-radius:6px;padding:7px 13px;font:500 14px "IBM Plex Sans",sans-serif;cursor:pointer}
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(28px,4vw,40px);font-weight:700;margin-bottom:10px}
+.sub{color:var(--muted);max-width:40em;margin:0 0 28px}
+.paper{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+.paper h3{font-size:24px;margin-bottom:12px}
+.facts{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.facts li{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--mask);border-radius:6px;padding:12px 16px}
+.facts b{display:block;font-size:14px;color:var(--muted);font-weight:500}
+.projects{display:grid;gap:22px}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;display:grid;grid-template-columns:200px 1fr;gap:24px}
+.proj .vis{background:var(--mask-soft);border-radius:8px;min-height:140px;display:flex;align-items:center;justify-content:center;padding:10px}
+.proj .vis svg{width:100%;height:auto;max-height:150px}
+.proj h3{font-size:22px;margin-bottom:6px}
+.stack{font-size:14px;color:var(--amber);margin:10px 0 0;font-weight:500}
+.proj p{margin:6px 0}
+.tl{display:grid;gap:22px}
+.job{display:grid;grid-template-columns:170px 1fr;gap:20px}
+.job .when{color:var(--muted);font-size:15px}
+.job h3{font-size:20px;margin-bottom:4px}
+.pill{display:inline-block;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 13px;margin:0 6px 8px 0;font-size:14px}
+.explore{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.idea{border:2px dashed var(--line);border-radius:12px;padding:20px}
+.idea .tag{display:inline-block;background:var(--amber);color:var(--bg);font-size:13px;font-weight:500;border-radius:4px;padding:2px 9px;margin-bottom:10px}
+.idea h3{font-size:19px;margin-bottom:8px}
+.idea p{margin:0;font-size:15.5px;color:var(--muted)}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.cols h3{font-size:18px;margin-bottom:10px}
+.creds{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:30px}
+.cred{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:15.5px}
+footer{padding:50px 0 70px;border-top:1px solid var(--line)}
+footer h2{margin-bottom:14px}
+@media (max-width:760px){.hero,.paper,.proj,.job,.explore,.cols{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.scan .mask{transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav aria-label="Primary">
+<strong style="font-family:'Bricolage Grotesque',sans-serif;font-size:19px">Sudipta Kumar Biswas</strong>
+<div class="links"><a href="#research">Research</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#exploring">Exploring</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div>
+</nav>
+
+<header class="hero">
+<div>
+<h1>Teaching machines to see inside the chest.</h1>
+<p class="lead">I’m an Assistant Professor of Computer Science and Engineering, and a former cloud engineer. I build attention-based deep learning models for medical imaging and the cloud systems that deploy them.</p>
+<div class="btns"><a class="btn primary" href="#research">Read my research</a><a class="btn" href="mailto:sudipta.kumar.biswas@protonmail.com">Email me</a></div>
+</div>
+<figure class="scan" id="scan" style="margin:0">
+<svg viewBox="0 0 400 360" role="img" aria-label="Illustration of a chest X-ray with lung regions highlighted by a segmentation mask">
+<defs><radialGradient id="g" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#3a4a55"/><stop offset="1" stop-color="#0b1217"/></radialGradient></defs>
+<rect width="400" height="360" fill="url(#g)"/>
+<g fill="none" stroke="#7f93a0" stroke-width="3" opacity=".7"><path d="M200 20v320"/><path d="M130 60q70 -30 140 0M120 100q80 -30 160 0M115 140q85 -30 170 0M118 180q82 -28 164 0"/></g>
+<g fill="#5a6c78" opacity=".55"><path d="M110 70Q60 160 80 280Q120 320 175 300Q190 200 180 90Q150 60 110 70Z"/><path d="M290 70Q340 160 320 280Q280 320 225 300Q210 200 220 90Q250 60 290 70Z"/></g>
+<g class="mask" fill="#12968a" fill-opacity=".55" stroke="#3cc9ba" stroke-width="3"><path d="M110 70Q60 160 80 280Q120 320 175 300Q190 200 180 90Q150 60 110 70Z"/><path d="M290 70Q340 160 320 280Q280 320 225 300Q210 200 220 90Q250 60 290 70Z"/></g>
+<path d="M205 200q-30 20 -10 80q40 20 60 -20q-10 -40 -50 -60Z" fill="#0b1217" opacity=".7"/>
+</svg>
+<figcaption><span>Illustrative image, not patient data</span><button id="tog" type="button" aria-pressed="false">Show segmentation</button></figcaption>
+</figure>
+</header>
+
+<section id="research">
+<h2>Research</h2>
+<p class="sub">Published at ACIIDS 2026 (Springer Singapore), as part of my M.E. thesis at Jadavpur University.</p>
+<div class="paper">
+<div>
+<h3>An Attention-Enhanced Architecture with Multi-Objective Hyperparameter Optimization for Efficient Lung Segmentation</h3>
+<p>Lung segmentation from chest X-rays is the first step in many automated diagnosis pipelines, and it has to be accurate and cheap to run. I built <b>EC-CBAM-UNet</b>, a U-Net with attention modules that help the network focus on the informative channels and regions of the image. I then tuned its hyperparameters with a multi-objective search, so that accuracy and efficiency were optimized together rather than traded off by hand.</p>
+<p>Supervised by Dr. Ujjwal Maulik (Jadavpur University) and Dr. Jamuna Kanta Sing, with the ISI–JU–CNCI collaboration.</p>
+</div>
+<ul class="facts">
+<li><b>Task</b>Lung segmentation on chest X-ray images</li>
+<li><b>Model</b>EC-CBAM-UNet, a U-Net with channel and spatial attention</li>
+<li><b>Method</b>Multi-objective hyperparameter optimization</li>
+<li><b>Built with</b>PyTorch</li>
+<li><b>Venue</b>ACIIDS 2026, Springer Singapore</li>
+</ul>
+</div>
+</section>
+
+<section id="projects">
+<h2>Projects</h2>
+<p class="sub">Systems I designed and built end to end.</p>
+<div class="projects">
+<article class="proj">
+<div class="vis"><svg viewBox="0 0 200 150" aria-hidden="true"><rect x="60" y="15" width="80" height="100" rx="8" fill="none" stroke="#12968a" stroke-width="4"/><circle cx="100" cy="55" r="18" fill="none" stroke="#12968a" stroke-width="4"/><path d="M68 108q32 -40 64 0" fill="none" stroke="#12968a" stroke-width="4"/><path d="M52 40v-14h14M148 40v-14h-14M52 94v14h14M148 94v14h-14" fill="none" stroke="#b86a00" stroke-width="4"/></svg></div>
+<div>
+<h3>Smart Attendance System using Face Recognition</h3>
+<p><b>Problem:</b> manual roll calls waste class time and are easy to fake.</p>
+<p><b>Approach:</b> an Android app in Kotlin captures faces and talks to a Python backend. OpenCV handles detection (Haar Cascade) and recognition (LBPH). JWT secures the REST APIs, and records live in PostgreSQL.</p>
+<p class="stack">Python, FastAPI, Flask, OpenCV, Kotlin, Node.js, Volley, PostgreSQL, Docker, JWT, Railway</p>
+</div>
+</article>
+<article class="proj">
+<div class="vis"><svg viewBox="0 0 200 150" aria-hidden="true"><rect x="10" y="55" width="40" height="40" rx="6" fill="none" stroke="#12968a" stroke-width="4"/><rect x="80" y="55" width="40" height="40" rx="6" fill="none" stroke="#12968a" stroke-width="4"/><rect x="150" y="15" width="40" height="30" rx="6" fill="none" stroke="#b86a00" stroke-width="4"/><rect x="150" y="105" width="40" height="30" rx="6" fill="none" stroke="#b86a00" stroke-width="4"/><path d="M50 75h30M120 70l30 -35M120 80l30 35" stroke="#12968a" stroke-width="4" fill="none"/></svg></div>
+<div>
+<h3>Distributed Task Queue System</h3>
+<p><b>Problem:</b> slow jobs should not block the API that requests them.</p>
+<p><b>Approach:</b> FastAPI accepts tasks and puts them on a Redis queue. Separate worker containers pick them up, and WebSockets push live status back to the client.</p>
+<p class="stack">Python, Redis, FastAPI, Docker, WebSockets</p>
+</div>
+</article>
+<article class="proj">
+<div class="vis"><svg viewBox="0 0 200 150" aria-hidden="true"><rect x="55" y="40" width="90" height="70" rx="10" fill="none" stroke="#12968a" stroke-width="4"/><path d="M80 40v-10a20 20 0 0 1 40 0v10" fill="none" stroke="#b86a00" stroke-width="4"/><circle cx="100" cy="75" r="9" fill="#12968a"/></svg></div>
+<div>
+<h3>Secure Contacts Application</h3>
+<p><b>Approach:</b> a native Android app that stores contacts in a local Room database and works with the system Contacts provider through URIs.</p>
+<p class="stack">Kotlin, RoomDB, Contacts URI</p>
+</div>
+</article>
+</div>
+</section>
+
+<section id="experience">
+<h2>Experience</h2>
+<div class="tl">
+<div class="job"><div class="when">June 2026 to present</div><div><h3>Assistant Professor</h3><p>Dr. B.C. Roy Engineering College, Department of Computer Science and Engineering.</p></div></div>
+<div class="job"><div class="when">July 2025 to May 2026</div><div><h3>Cloud Engineer</h3><p>Workmates Core2Cloud Solutions Ltd. Worked with AWS compute, storage, database, networking, and messaging services, and containerized workloads with Docker and Kubernetes.</p><p><span class="pill">EC2</span><span class="pill">S3</span><span class="pill">RDS</span><span class="pill">Lambda</span><span class="pill">CloudFront</span><span class="pill">VPC</span><span class="pill">IAM</span><span class="pill">SNS</span><span class="pill">Docker</span><span class="pill">Kubernetes</span></p></div></div>
+</div>
+</section>
+
+<section id="exploring">
+<h2>Currently exploring</h2>
+<p class="sub">Project concepts I’m planning next. These are ideas, not finished work.</p>
+<div class="explore">
+<div class="idea"><span class="tag">Concept</span><h3>Explainable chest X-ray segmentation</h3><p>Show what the attention modules in EC-CBAM-UNet focus on, using Grad-CAM-style heatmaps, so predictions are easier to trust.</p></div>
+<div class="idea"><span class="tag">Concept</span><h3>Course-notes assistant</h3><p>A retrieval-augmented study helper for CSE subjects, built with LangGraph and AWS Bedrock, with answers tied to the lecture notes.</p></div>
+<div class="idea"><span class="tag">Concept</span><h3>Lightweight model deployment</h3><p>Shrink the segmentation model with quantization and export it to ONNX, then serve it from a small container on AWS.</p></div>
+</div>
+</section>
+
+<section id="skills">
+<h2>Skills and credentials</h2>
+<div class="cols">
+<div><h3>ML and AI</h3><p>PyTorch, NumPy, Pandas, Scikit-Learn, OpenCV, LangChain, LangGraph. CNNs, RNNs, Transformers, computer vision.</p></div>
+<div><h3>Cloud and DevOps</h3><p>AWS (SageMaker, Bedrock, EC2, S3, Lambda), Docker, Kubernetes, Linux, Git and GitHub.</p></div>
+<div><h3>Backend and mobile</h3><p>Python, C++, C, Kotlin. FastAPI, Flask, REST APIs, JWT, PostgreSQL, MySQL, Android Studio.</p></div>
+</div>
+<div class="creds">
+<div class="cred">AWS Certified AI Practitioner</div>
+<div class="cred">AWS Certified Machine Learning Engineer, Associate</div>
+<div class="cred">Qualified UGC NET JRF in Computer Science, 2026</div>
+<div class="cred">GATE (CS) qualified, 2023 and 2024</div>
+<div class="cred">Wipro Certified Faculty, Data Science with Python</div>
+<div class="cred">Infosys InfyTQ certified, with a pre-placement offer</div>
+</div>
+</section>
+
+<section id="education">
+<h2>Education</h2>
+<div class="tl">
+<div class="job"><div class="when">2023 to 2025</div><div><h3>M.E. in Computer Science and Engineering</h3><p>Jadavpur University. CGPA 8.67.</p></div></div>
+<div class="job"><div class="when">2019 to 2023</div><div><h3>B.Tech</h3><p>MAKAUT (in-house). CGPA 9.23.</p></div></div>
+</div>
+<p class="sub" style="margin-top:24px">Courses I can teach: Data Structures and Algorithms, Machine Learning, Deep Learning, Operating Systems, Database Management Systems, Image Processing, Computer Architecture.</p>
+</section>
+</div>
+
+<footer id="contact">
+<div class="wrap">
+<h2>Get in touch</h2>
+<p class="sub">For research collaboration, teaching, or engineering roles, email me.</p>
+<div class="btns"><a class="btn primary" href="mailto:sudipta.kumar.biswas@protonmail.com">sudipta.kumar.biswas@protonmail.com</a></div>
+</div>
+</footer>
+
+<script>
+var s=document.getElementById('scan'),b=document.getElementById('tog');
+b.addEventListener('click',function(){var on=s.classList.toggle('on');b.setAttribute('aria-pressed',on);b.textContent=on?'Hide segmentation':'Show segmentation';});
+</script>
+</body>
+</html>
